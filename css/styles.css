@@ -1,0 +1,70 @@
+/* Here we have some basic styles that look decent on desktop. However, opening the inspector and adjusting the viewport width reveals problems that break the page once the screen gets too small for the content. */
+body {
+    min-height: 100vh;
+    display: grid;
+    /* Basic layout that allows the footer and header to stick to the top an bottom of the page respectively. */
+    grid-template-rows: auto 1fr auto;
+}
+
+header {
+    background-color: lightgreen;
+}
+main {
+    background-color: lightgoldenrodyellow;
+    display: grid;
+    /* Three column layout */
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+
+    max-width: 1000px;
+    margin: 0 auto;
+}
+footer {
+    background-color: lightcoral;
+}
+
+header, main, footer {
+    padding: 25px;
+}
+
+.card {
+    background-color: aliceblue;
+    border: 2px solid #aaa;
+    border-radius: 20px;
+    padding: 20px;
+
+    box-shadow: 0 3px 15px;
+}
+
+/* Media Queries allow us to apply conditional styles under certain conditions - typically the width of the page. 'screen' refers to the display type of the page (i.e. a computer screen, see below for the alternative). 99% of the time, it's going to be 'screen'. */
+
+/* We can define the width that the style will begin applying at with either max-width or min-width. For max-width, this is the *largest* size these styles will apply. For min-width this is the *smallest* size it will be applied. */
+@media screen and (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card:last-child {
+        grid-column: span 2;
+    }
+}
+
+/* We can (and usually should have multiple media queries to account for different screen sizes. The numbers we choose are called breakpoints.) */
+@media screen and (max-width: 600px) {
+    main {
+        grid-template-columns: 1fr;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .card {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+
+    .card:last-child {
+        grid-column: span 1;
+    }
+}
